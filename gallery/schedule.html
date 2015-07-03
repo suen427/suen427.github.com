@@ -29,6 +29,11 @@
 			font-weight: normal;
 			width: 25px;
 		}
+
+		/* 背景色间隔 */
+		td:nth-child(4n+3) ,td:nth-child(4n+4),tr:nth-child(n+5)>th:nth-child(4n+3) ,tr:nth-child(n+5)>th:nth-child(4n+4),tr:nth-child(4)>th:nth-child(4n+2) ,tr:nth-child(4)>th:nth-child(4n+3),tr:nth-child(2)>th:nth-child(2n+3) ,tr:nth-child(3)>th:nth-child(odd){
+			background-color: #0af;
+		}		
 		.drops{
 			position: absolute;
 			top:20px;
@@ -88,7 +93,7 @@
 </head>
 <body>
 	<caption>排班表</caption>
-	<table id='table'>
+	<table id='table' contentEditable>
 		<tbody></tbody>
 	</table>
 	<div class='ctrl'>
