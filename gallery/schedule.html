@@ -22,18 +22,26 @@
 			width: 25px;
 			position: relative;
 			font-weight: bold;
+			background-clip: padding-box;
 		}
 		th{
 			position: relative;
 			border: 1px solid #000;
 			font-weight: normal;
 			width: 25px;
+			background-clip: padding-box;
 		}
 
 		/* 背景色间隔 */
 		td:nth-child(4n+3) ,td:nth-child(4n+4),tr:nth-child(n+5)>th:nth-child(4n+3) ,tr:nth-child(n+5)>th:nth-child(4n+4),tr:nth-child(4)>th:nth-child(4n+2) ,tr:nth-child(4)>th:nth-child(4n+3),tr:nth-child(2)>th:nth-child(2n+3) ,tr:nth-child(3)>th:nth-child(odd){
 			background-color: #0af;
-		}		
+		}
+		tr:nth-child(n+5):hover th,tr:nth-child(n+5):hover td{
+			background-color: #0ff;
+		}
+		tr:nth-child(n+5).hover th,tr.hover td{
+			background-color: #ff0;
+		}
 		.drops{
 			position: absolute;
 			top:20px;

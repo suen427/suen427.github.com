@@ -783,3 +783,15 @@ document.getElementById('setmonth').addEventListener('click',function(event){
 	daysNumOfMonth = getDaysNumOfMonth(nextMonth);
 	firstDayOfMonth = nextMonth.getDay();
 },false);
+
+table.addEventListener('click',function(event){
+	var target = event.target;
+	var hovers =  table.getElementsByClassName('hover');
+	if (hovers.length>0){
+		for (var i=0; i<hovers.length; i++){
+			hovers[i].className = '';
+		}
+	}
+	target.parentNode.className = 'hover';
+	event.stopPropagation();
+},false)
