@@ -17,7 +17,7 @@
         #statistic{
             position: absolute;
             top: 130px;
-            left: 350px;
+            left: 500px;
         }
     </style>
 </head>
@@ -30,10 +30,9 @@
     <div id="input" style="display:none;"></div>
     <table id = 'output'>
         <thead>
-            <tr><th>姓名</th>
-            <th>部门</th>
+            <tr><th>考勤异常人员姓名</th>
             <th>岗位</th>
-            <th>异常时段</th>
+            <th>异常时间段</th>
             <th>异常事件</th></tr>
         </thead>
     </table>
@@ -59,6 +58,22 @@
         var leaveearly = [];
         var forget1 = [];
         var forget2 = [];
+
+        //  员工岗位
+        var job = {
+            谢素梅:'项目经理',
+            邬凯:'客服中心主管',
+            向前:'工程经理',
+            司超:'秩序主管',
+            沈利红:'食堂做饭',
+            谢少华:'绿化班长',
+            宓雪玲:'环境班长',
+            吴艳:'客服经理',
+            戎超群:'客服专员',
+            吴丹丹:'客服专员',
+            叶佳莹:'客服专员',
+            张智:'客服专员'
+        }
 
         //读取考勤记录
         function read1(){
@@ -113,7 +128,7 @@
                 forget2[i]=0;
                 forget1[i]=0;
             }
-            output.innerHTML = '<thead><tr><th>姓名</th><th>部门</th><th>岗位</th><th>异常时段</th><th>异常事件</th></tr></thead>';
+            output.innerHTML = '<thead><tr><th>考勤异常人员姓名</th><th>岗位</th><th>异常时间段</th><th>异常事件</th></tr></thead>';
             state.innerHTML = '<thead><tr><th>姓名</th><th>迟到</th><th>早退</th><th>早上未打卡</th><th>晚上未打卡</th></tr></thead>'
             var num = tables.length;
             var len = schedules.length;
@@ -164,12 +179,12 @@
                 }else if( flag1 || flag2 || flag3 || flag4 ){
                     late[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>打卡迟到</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午8:00</td><td>打卡迟到</td>';
                     output.appendChild(tr);
                 }else{
                     forget1[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>未打卡上班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午8:00</td><td>未打卡上班</td>';
                     output.appendChild(tr);
                 }
 
@@ -178,12 +193,12 @@
                 }else if( flag5 || flag6 ){
                     leaveearly[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>提早打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午16:30</td><td>提早打卡下班</td>';
                     output.appendChild(tr);
                 }else{
                     forget2[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>未打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午16:30</td><td>未打卡下班</td>';
                     output.appendChild(tr);
                 }
 
@@ -196,12 +211,12 @@
                 }else if( flag2 || flag3 || flag4 ){
                     late[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>打卡迟到</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午8:30</td><td>打卡迟到</td>';
                     output.appendChild(tr);
                 }else{
                     forget1[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>未打卡上班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午8:30</td><td>未打卡上班</td>';
                     output.appendChild(tr);
                 }
 
@@ -210,12 +225,12 @@
                 }else if( flag5 || flag6 || flag7 || flag8 ){
                     leaveearly[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>提早打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午17:30</td><td>提早打卡下班</td>';
                     output.appendChild(tr);
                 }else{
                     forget2[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>未打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午17:30</td><td>未打卡下班</td>';
                     output.appendChild(tr);
                 }
 
@@ -225,12 +240,12 @@
                 }else if( flag3 || flag4 ){
                     late[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>打卡迟到</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午9:00</td><td>打卡迟到</td>';
                     output.appendChild(tr);
                 }else{
                     forget1[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日上午</td><td>未打卡上班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日上午9:00</td><td>未打卡上班</td>';
                     output.appendChild(tr);
                 }
 
@@ -239,12 +254,12 @@
                 }else if( flag5 || flag6 || flag7 || flag8 ){
                     leaveearly[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>提早打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午17:30</td><td>提早打卡下班</td>';
                     output.appendChild(tr);
                 }else{
                     forget2[i]++;
                     var tr = document.createElement('tr');
-                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td></td><td></td><td>'+month+'月'+(k+1)+'日下午</td><td>未打卡下班</td>';
+                    tr.innerHTML = '<td>'+schedules[j][1]+'</td><td>'+job[schedules[j][1].trim()]+'</td><td>'+month+'月'+(k+1)+'日下午17:30</td><td>未打卡下班</td>';
                     output.appendChild(tr);
                 }
             }
